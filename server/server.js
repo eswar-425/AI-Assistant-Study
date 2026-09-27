@@ -25,6 +25,20 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Root status endpoint
+app.get('/', (req, res) => {
+  res.json({
+    project: 'AI Study Assistant API',
+    status: 'active',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      generate: 'POST /api/study/generate',
+      history: 'GET /api/study/history'
+    }
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
